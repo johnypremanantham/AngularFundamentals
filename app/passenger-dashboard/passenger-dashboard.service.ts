@@ -1,22 +1,22 @@
 import {Passenger} from "./models/passenger.interface";
+import {Http, Response} from "@angular/http";
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/map';
 
+const PASSENGER_API = 'api/passengers'
+
+@Injectable() // Tells angular we can inject things in to its constructor
 export class PassengerDashboardService{
-  constructor(){}
+  constructor(
+    private http: Http
+  ){
+  }
 
-  getPassengers(): Passenger[]{
-    return [
-      {
-        id: 1,
-        fullname: 'Alfred',
-        checkedIn: false,
-        children: [{name: 'aron', age: 12}, {name: 'baron', age: 122}]
-      },
-      {
-        id: 2,
-        fullname: 'John',
-        checkedIn: true,
-        checkInDate: 1490742000000
-      }
-    ];
+
+  getPassengers(): Observable<Passenger[]>{
+    return this.http
+      .get(PASSENGER_API)
+      .map((response: Response) => response.json())
   }
 }

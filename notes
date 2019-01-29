@@ -60,4 +60,18 @@ With this we can change the child components data without changes it on the pare
 
 SERVICES, HTTP AND OBSERVABLES
 
-1.
+1. constructor(private passengerService: PassengerDashboardService){
+    }
+  Dependency injected our service to our constructor
+
+ 2.   @Injectable() // Tells angular we can inject things in to its constructor
+      Needs to be used when we use a external dependency in a service
+  Dependency injection in our other classes
+
+  Dependency injection = use injectable service classes in components, does it my refering it in the constructor
+
+
+
+  To define a class as a service in Angular, use the @Injectable() decorator to provide the metadata that allows Angular to inject it into a component as a dependency.
+  Similarly, use the @Injectable() decorator to indicate that a component or other class (such as another service, a pipe, or an NgModule) has a dependency.
+
