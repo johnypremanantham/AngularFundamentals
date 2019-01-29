@@ -1,0 +1,63 @@
+
+MISC
+ Interpolation showing data in html / Expression is whats being shown
+  [] = property binding -> one way data flow (one way data binding)
+  () = event binding (input) event used instead of keyup etc
+  # = ref variable
+
+
+RENDERING FLOWS
+1.
+two way data binding is ok for a local component.
+Preferably one way data binding should be used, when a change has occured emit that change using a eventlisterner.
+
+2.
+The module that has the bootstrap "property" decides which component that should first be intialized, in main.ts we decide which module that should be bootstrapped.
+
+3.
+ <div *ngIf = "bol"> </div> = <ng-template [ngIf]="bol"> <../>
+The template element is not visible in the DOM thats why we dont see ng if in the DOM.
+* = sugar syntax
+(<ng-template> = web component)
+
+4.
+
+<li *ngfor = let a of list; let i = index></li>
+
+ ===
+(shadow dom / full encapsulation)
+<template ngFor let-passenger let-i ="index" [ngForOf]="list">
+<li>
+</li>
+</template>
+
+
+5. use angular pipes when transforming data (| date: 'yMMMMd' | uppercase) ability to use different pipes after eachother is possible
+
+6. Safe navigation operator = ?
+    object?.attribute = Uses safe navigation operator
+    object.attribute = Does not use safe navigation operator
+
+    If you want to  display something else if object is null/undefined
+    {{object?.attribute || some value}}
+
+
+COMPONENT ARCHITECTURE AND FEATURE MODULES
+
+1. Container and presentation component
+
+  Container (Smart): Retrives data from a service for example and can pass this data to the sub components,
+  Communicates with services, render child components
+  Presentation (Dumb): Accept data via inputs, Emits data changes cia event outputs
+
+2. Presentation (Dumb) components are used as stateless child components.
+
+3. Getting data INTO a component = @Input();
+   Getting data OUT from a component = @Output +  EventEmitter
+
+4. NgOnChanges i called before ngoninit, can be used to create new immutable objects so that the referenace to a variable gets removed.
+With this we can change the child components data without changes it on the parent until we want the change to occur.
+
+SERVICES, HTTP AND OBSERVABLES
+
+1.
