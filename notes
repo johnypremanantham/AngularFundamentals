@@ -47,8 +47,8 @@ COMPONENT ARCHITECTURE AND FEATURE MODULES
 1. Container and presentation component
 
   Container (Smart): Retrives data from a service for example and can pass this data to the sub components,
-  Communicates with services, render child components
-  Presentation (Dumb): Accept data via inputs, Emits data changes cia event outputs
+  Communicates with services, render child components (statefull component)
+  Presentation (Dumb): Accept data via inputs, Emits data changes cia event outputs (stateless)
 
 2. Presentation (Dumb) components are used as stateless child components.
 
@@ -75,3 +75,21 @@ SERVICES, HTTP AND OBSERVABLES
   To define a class as a service in Angular, use the @Injectable() decorator to provide the metadata that allows Angular to inject it into a component as a dependency.
   Similarly, use the @Injectable() decorator to indicate that a component or other class (such as another service, a pipe, or an NgModule) has a dependency.
 
+
+ROUTING
+
+1.
+In the child module we use forChild instead of forRoot
+ /* exports:[ // Export is not necessary when using forChild eveything gets pulled to the root by the routing
+    PassengerViewerComponent
+  ],*/
+
+2.    switchMap will change subscription from observing changes from the the intial obseravable, to a new obseravable,
+ so inside the initial subscription a new method that returns a observable must be used because the switchmap expects a new obserable to subscribe on
+
+3.
+    this.router.navigate(['/passengers']); // Imperative routing because we are using the native API
+4.
+RouterModule.forRoot(routes, {useHash: true})
+
+useHash -> does not support server side rendering
